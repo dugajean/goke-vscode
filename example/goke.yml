@@ -1,22 +1,18 @@
 global:
   env:
-    BINARY: "goke"
-
-main: 
-  files: [cmd/cli/*.go, internal/*]
-  run:
-    - "go build -o './build/${BINARY}' ./cmd/cli"
-
-genmocks:
-  files: [internal/filesystem.go, internal/process.go]
-  run:
-    - "mockery --name=FileSystem --recursive --output=internal/tests --outpkg=tests --filename=filesystem_mock.go"
-    - "mockery --name=Process --recursive --output=internal/tests --outpkg=tests --filename=process_mock.go"
+    GATO: "Luna"
+    DOGO: "Frodo"
 
 greet-cats:
   run:
     - 'echo "Hello Frey"'
-    - 'echo "Hello Bunny"'
+    - 'echo "Hello Sunny"'
     - 'echo "Hello ${CAT}"'
+    - 'echo "Hello ${GATO}"'
   env:
-    CAT: "Kitty"
+    CAT: "Pepper"
+
+greet-dogs: 
+  run:
+    - 'echo "Hello Doge"'
+    - 'echo "Hello ${DOGO}"'

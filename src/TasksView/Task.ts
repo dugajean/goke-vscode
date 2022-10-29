@@ -16,6 +16,7 @@ export class Task extends vscode.TreeItem {
       __filename,
       '..',
       '..',
+      '..',
       'resources',
       theme,
       'dependency.svg'
