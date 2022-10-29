@@ -1,26 +1,51 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+import { execSync } from 'child_process';
 import * as vscode from 'vscode';
+import { Task, TasksView } from './tasksView';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+  if (!isGokeInstalled()) {
+    vscode.window.showErrorMessage(
+      `Goke must be available in your path.
+      See: https://github.com/dugajean/goke#installation`
+    );
+    return;
+  }
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "goke" is now active!');
+  let view = new TasksView(context);
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('goke.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Goke!');
-	});
+  const refreshHandler = () => {
+    view.dataProvider.reload();
+  };
 
-	context.subscriptions.push(disposable);
+  const runTaskHandler = (task: Task) => {
+    const taskName = task.label;
+    const cwd = vscode?.workspace?.workspaceFolders?.[0].uri.path;
+    const tasksStr = execSync(`cd ${cwd} && goke ${taskName}`).toString();
+
+    vscode.window.showInformationMessage(
+      `Executed ${taskName} task. See console for output.`
+    );
+
+    console.info(tasksStr);
+  };
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('gokeTasks.refresh', refreshHandler)
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('gokeTasks.runTask', runTaskHandler)
+  );
 }
 
 // This method is called when your extension is deactivated
 export function deactivate() {}
+
+function isGokeInstalled(): boolean {
+  try {
+    execSync('which goke').toString();
+    return true;
+  } catch (error) {
+    return false;
+  }
+}

@@ -10,16 +10,54 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:goke.helloWorld"
+    "workspaceContains:**/goke.yml",
+    "workspaceContains:**/goke.yaml",
+    "onStartupFinished"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "gokeTasks",
+          "name": "Goke Tasks"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "goke.helloWorld",
-        "title": "Hello World"
+        "command": "gokeTasks.refresh",
+        "title": "Refresh",
+        "icon": {
+          "light": "resources/light/refresh.svg",
+          "dark": "resources/dark/refresh.svg"
+        }
+      },
+      {
+        "command": "gokeTasks.runTask",
+        "title": "Run",
+        "icon": {
+          "light": "resources/play.svg",
+          "dark": "resources/play.svg"
+        }
       }
-    ]
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "gokeTasks.refresh",
+          "when": "view == gokeTasks",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "gokeTasks.runTask",
+          "when": "view == gokeTasks",
+          "group": "inline"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
@@ -30,16 +68,18 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.72.0",
     "@types/glob": "^8.0.0",
     "@types/mocha": "^10.0.0",
     "@types/node": "16.x",
+    "@types/vscode": "^1.72.0",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
+    "@vscode/test-electron": "^2.1.5",
     "eslint": "^8.24.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "glob": "^8.0.3",
     "mocha": "^10.0.0",
-    "typescript": "^4.8.4",
-    "@vscode/test-electron": "^2.1.5"
+    "prettier": "2.7.1",
+    "typescript": "^4.8.4"
   }
 }

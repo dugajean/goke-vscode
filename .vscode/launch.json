@@ -10,7 +10,8 @@
 			"type": "extensionHost",
 			"request": "launch",
 			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}"
+				"--extensionDevelopmentPath=${workspaceFolder}",
+				"/Users/dugi/Code/goke-extension"
 			],
 			"outFiles": [
 				"${workspaceFolder}/out/**/*.js"
