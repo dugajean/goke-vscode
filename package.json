@@ -10,9 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "workspaceContains:**/goke.yml",
-    "workspaceContains:**/goke.yaml",
-    "onStartupFinished"
+    "workspaceContains:goke.yml",
+    "workspaceContains:goke.yaml"
   ],
   "main": "./out/extension.js",
   "contributes": {

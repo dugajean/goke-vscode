@@ -1,6 +1,7 @@
 import { execSync } from 'child_process';
 import * as vscode from 'vscode';
-import { Task, TasksView } from './tasksView';
+import { Task } from './TasksView/Task';
+import { TasksView } from './TasksView/TasksView';
 
 export function activate(context: vscode.ExtensionContext) {
   if (!isGokeInstalled()) {
