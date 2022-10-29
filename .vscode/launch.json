@@ -11,7 +11,7 @@
 			"request": "launch",
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}",
-				"/Users/dugi/Code/goke-extension"
+				"/Users/dugi/Code/goke-extension/example"
 			],
 			"outFiles": [
 				"${workspaceFolder}/out/**/*.js"
