@@ -1,7 +1,7 @@
 {
   "name": "goke",
   "displayName": "Goke",
-  "description": "Make better.",
+  "description": "Run Goke tasks easily from within VS Code.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.72.0"
