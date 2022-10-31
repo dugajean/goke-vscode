@@ -13,6 +13,7 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   let view = new TasksView(context);
+  let outputChannel = vscode.window.createOutputChannel('Goke');
 
   const refreshHandler = () => {
     view.dataProvider.reload();
@@ -24,10 +25,11 @@ export function activate(context: vscode.ExtensionContext) {
     const tasksStr = execSync(`cd ${cwd} && goke ${taskName}`).toString();
 
     vscode.window.showInformationMessage(
-      `Executed ${taskName} task. See console for output.`
+      `Successfully executed ${taskName} task.`
     );
 
-    console.info(tasksStr);
+    outputChannel.replace(tasksStr);
+    outputChannel.show(true);
   };
 
   context.subscriptions.push(

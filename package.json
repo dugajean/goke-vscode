@@ -4,7 +4,7 @@
   "publisher": "dugajean",
   "description": "Run Goke tasks easily from within VS Code.",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.72.0"
   },
