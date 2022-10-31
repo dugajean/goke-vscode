@@ -3,7 +3,7 @@
   "displayName": "Goke",
   "description": "Run Goke tasks easily from within VS Code.",
   "license": "MIT",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.72.0"
   },
@@ -65,7 +65,7 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "deploy": "vsce publish"
   },
   "devDependencies": {
     "@types/glob": "^8.0.0",
@@ -80,6 +80,7 @@
     "glob": "^8.0.3",
     "mocha": "^10.0.0",
     "prettier": "2.7.1",
-    "typescript": "^4.8.4"
+    "typescript": "^4.8.4",
+    "vsce": "^2.13.0"
   }
 }
