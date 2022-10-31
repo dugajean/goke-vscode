@@ -1,6 +1,7 @@
 {
   "name": "goke",
   "displayName": "Goke",
+  "publisher": "dugajean",
   "description": "Run Goke tasks easily from within VS Code.",
   "license": "MIT",
   "version": "1.0.0",
